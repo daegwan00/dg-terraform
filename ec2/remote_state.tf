@@ -1,7 +1,11 @@
 data "terraform_remote_state" "vpc2" {
-    backend = "local" # 로컬 백엔드 사용
+    backend = "s3" # 로컬 백엔드 사용
     config = {
-      path = "../vpc2/terraform.tfstate"
+      bucket = "dg-tf-state-pr"
+      key = "dg-terraform/vpc2/terraform.tfstate"
+      region = "ap-northeast-2"
+      encrypt = true
+      dynamodb_table = "terraform-lock"
     }
   
 }

@@ -1,12 +1,12 @@
 
 # vpc 생성
 resource "aws_vpc" "dg-vpc2" {
-    cidr_block = "10.0.0.0/16"
+    cidr_block = var.vpc2_cidr
     enable_dns_support = true # vpc 내에서 dns 조회 기능 활성화
     enable_dns_hostnames = true # vpc 내에 생성되는 인스턴스에 dns 호스트 네임 할당 활성화
 
     tags = {
-        Name = "ap-dg-vpc2"
+        Name = var.vpc2_name
     }
   
 }
@@ -15,23 +15,23 @@ resource "aws_vpc" "dg-vpc2" {
 
 resource "aws_subnet" "dg-public-sb2" {
   vpc_id = aws_vpc.dg-vpc2.id
-  cidr_block = "10.0.1.0/24"
+  cidr_block = var.public_subnet_cidr
 
-  availability_zone = "ap-northeast-2a"
+  availability_zone = var.public_availability_zone
 
   tags = {
-    Name  = "dg-public-sb2"
+    Name  = var.public_subnet_name
   }
 }
 
 resource "aws_subnet" "dg-private-sb2" {
 
     vpc_id = aws_vpc.dg-vpc2.id
-    cidr_block = "10.0.2.0/24"
-    availability_zone = "ap-northeast-2b"
+    cidr_block = var.private_subnet_cidr
+    availability_zone = var.private_availability_zone
 
     tags = {
-        Name = "dg-private-sb2"
+        Name = var.private_subnet_name
     }
   
 }
@@ -41,7 +41,7 @@ resource "aws_internet_gateway" "dg-igw2" {
     vpc_id = aws_vpc.dg-vpc2.id
     
     tags = {
-        Name = "dg-igw2"
+        Name = var.igw_name
     }
 }
 
@@ -55,7 +55,7 @@ resource "aws_route_table" "public-rt" {
     }
     
     tags = {
-      Name = "dg-public-rt"
+      Name = var.public_route_table_name
     }
 }
 
@@ -70,7 +70,7 @@ resource "aws_route_table_association" "public" {
 resource "aws_route_table" "private-rt" {
     vpc_id = aws_vpc.dg-vpc2.id
     tags = {
-        Name = "dg-private-rt"
+        Name = var.private_route_table_name
     }
   
 }

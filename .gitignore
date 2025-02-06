@@ -3,3 +3,4 @@
 **/provider.tf
 .terraform/
 **/.terraform.lock.hcl
+*.tfvars
