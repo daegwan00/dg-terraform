@@ -12,3 +12,8 @@ output "private_subnet" {
     description = "private_subnet"
     value = aws_subnet.dg-private-sb2.id
 }
+
+output "vpc2_name" {
+    description = "using vpc2 tags name for ec2"
+    value = aws_vpc.dg-vpc2.tags
+}
