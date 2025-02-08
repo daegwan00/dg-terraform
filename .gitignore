@@ -4,3 +4,5 @@
 .terraform/
 **/.terraform.lock.hcl
 *.tfvars
+ec2-key.tf
+dg-ec2-key.pem

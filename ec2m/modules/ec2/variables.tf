@@ -14,11 +14,9 @@ variable "subnet_id" {
   
 }
 
-variable "instance_name" {
-    description = "인스턴스 태그 name"
-    type = string
-  
-}
+
+
+variable "service_name" {}
 
 variable "vpc2_name" {}
 
@@ -26,4 +24,6 @@ variable "public_subnet" {}
 
 variable "private_subnet" {}
 
-variable "vpc_id" {}
+variable "vpc2_id" {}
+
+variable "key_name" {}
